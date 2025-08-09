@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "CP",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
