@@ -1,0 +1,102 @@
+{
+  "CP Template": {
+    "prefix": "cp",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "#define ll long long",
+      "#define all(x) (x).begin(), (x).end()",
+      "#define rall(x) (x).rbegin(), (x).rend()",
+      "#define pb push_back",
+      "#define fi first",
+      "#define se second",
+      "#define fastio ios::sync_with_stdio(0); cin.tie(0);",
+      "",
+      "void solve()",
+      "{",
+      "    $0",
+      "}",
+      "",
+      "int main()",
+      "{",
+      "    fastio;",
+      "    solve();",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Competitive Programming Template"
+  },
+  "Debug Macro": {
+    "prefix": "debug",
+    "body": [
+      "#ifdef LOCAL",
+      "#define dbg(x) cerr << #x << \" = \" << (x) << endl",
+      "#else",
+      "#define dbg(x)",
+      "#endif"
+    ],
+    "description": "Debug macro for quick variable output"
+  },
+  "Vector Input": {
+    "prefix": "vin",
+    "body": [
+      "for (auto &x : ${1:v}) cin >> x;"
+    ],
+    "description": "Quick vector input"
+  },
+  "Vector Output": {
+    "prefix": "vout",
+    "body": [
+      "for (auto &x : ${1:v}) cout << x << ' ';",
+      "cout << '\\n';"
+    ],
+    "description": "Quick vector output"
+  },
+  "Minimize/Maximize": {
+    "prefix": "upminmax",
+    "body": [
+      "template<class T> bool chmin(T &a, const T &b) { if (b < a) { a = b; return 1; } return 0; }",
+      "template<class T> bool chmax(T &a, const T &b) { if (b > a) { a = b; return 1; } return 0; }"
+    ],
+    "description": "Update min/max helper functions"
+  },
+  "Sieve of Eratosthenes": {
+    "prefix": "sieve",
+    "body": [
+      "int n = ${1:1000000};",
+      "vector<bool> is_prime(n+1, true);",
+      "is_prime[0] = is_prime[1] = false;",
+      "for (int i = 2; i * i <= n; ++i) {",
+      "    if (is_prime[i]) {",
+      "        for (int j = i * i; j <= n; j += i)",
+      "            is_prime[j] = false;",
+      "    }",
+      "}"
+    ],
+    "description": "Sieve of Eratosthenes"
+  },
+  "Binary Search": {
+    "prefix": "bsearch",
+    "body": [
+      "int l = ${1:0}, r = ${2:n}-1, ans = -1;",
+      "while (l <= r) {",
+      "    int m = l + (r-l)/2;",
+      "    if (${3:condition}) {",
+      "        ans = m;",
+      "        r = m - 1;", 
+      "    } else {",
+      "        l = m + 1;",
+      "    }",
+      "}"
+    ],
+    "description": "Binary search template"
+  },
+  "Read Pair Vector": {
+    "prefix": "vpinput",
+    "body": [
+      "for (auto &p : ${1:v}) cin >> p.first >> p.second;"
+    ],
+    "description": "Input for vector<pair<>>"
+  }
+}

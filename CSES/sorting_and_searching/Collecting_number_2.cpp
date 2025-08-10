@@ -1,31 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main()
+
+#define ll long long
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define pb push_back
+#define fi first
+#define se second
+#define fastio ios::sync_with_stdio(0); cin.tie(0);
+
+void solve()
 {
-    int n, p; cin >> n >> p;
-    vector<int> a(n), m(n+1);
-    for (int i=0; i<n; i++)
+    int n, m; cin >> n >> m;
+    vector<int> a(n+1), p(n+1);
+    for (int i=1; i<=n; i++)
     {
         cin >> a[i];
-        m[a[i]] = i;
+        p[a[i]] = i;
     }
-
-    while (p--)
+    ll sum = 1;
+    for (int i = 2; i <=n; i++)
+        if (p[i] < p[i-1]) sum++;
+    
+    while (m--)
     {
-        int l,k; cin >> l >> k;
-        swap(m[l], m[k]);
-        long long sum=1;
-        for (int i = 2; i <= n; i++)
-        {
-            if (m[i] < m[i-1])
-                sum++;
+        int st, fn; cin >> st >> fn;
+        set<int> s;
+        // Chỉ thêm các chỉ số hợp lệ
+        if (a[st]-1 >= 1) s.insert(a[st]-1);
+        s.insert(a[st]);
+        if (a[st]+1 >= 1) s.insert(a[st]+1);
+        if (a[fn]-1 >= 1) s.insert(a[fn]-1);
+        s.insert(a[fn]);
+        if (a[fn]+1 >= 1) s.insert(a[fn]+1);
+        
+        // Trừ đi các trường hợp cũ
+        if (s.size() > 1) {
+            auto it = s.begin();
+            auto prev = it++;
+            for (; it != s.end(); ++it, ++prev) {
+                if (p[*it] < p[*prev]) sum--;
+            }
         }
-        for (int i = 1; i <= n; i++)
-        {
-            cout << m[i];
+        swap(a[st], a[fn]);
+        swap(p[a[st]], p[a[fn]]);
+        // Cộng lại các trường hợp mới
+        if (s.size() > 1) {
+            auto it = s.begin();
+            auto prev = it++;
+            for (; it != s.end(); ++it, ++prev) {
+                if (p[*it] < p[*prev]) sum++;
+            }
         }
-        cout << sum <<endl;
-
+        cout << sum << "\n";
+        
     }
 }
 
+int main()
+{
+    fastio;
+    solve();
+    return 0;
+}
